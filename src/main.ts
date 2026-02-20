@@ -7,11 +7,19 @@ async function bootstrap() {
 
   app.use(helmet());
 
- app.enableCors({
-  origin: [
-    'http://localhost:5173',
-    'https://crud-frontend-hc217gxz1-giovanni-medinas-projects.vercel.app',
-  ],
+app.enableCors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+
+    if (
+      origin.startsWith('http://localhost') ||
+      origin.includes('.vercel.app')
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 });
