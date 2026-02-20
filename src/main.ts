@@ -7,11 +7,14 @@ async function bootstrap() {
 
   app.use(helmet());
 
-  app.enableCors({
-    origin: 'https://tu-frontend.vercel.app',
-    methods: 'GET,POST,PATCH,DELETE',
-    credentials: true,
-  });
+ app.enableCors({
+  origin: [
+    'http://localhost:5173',
+    'https://crud-frontend-abc123.vercel.app',
+  ],
+  methods: 'GET,POST,PATCH,DELETE',
+  credentials: true,
+});
 
  await app.listen(process.env.PORT || 3000);
 }
