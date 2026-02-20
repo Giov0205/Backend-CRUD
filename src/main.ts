@@ -10,12 +10,11 @@ async function bootstrap() {
  app.enableCors({
   origin: [
     'http://localhost:5173',
-    'https://crud-frontend-eosin.vercel.app/',
+    'https://crud-frontend-hc217gxz1-giovanni-medinas-projects.vercel.app',
   ],
-  methods: 'GET,POST,PATCH,DELETE',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 });
-
  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
